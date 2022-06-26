@@ -28,3 +28,9 @@ docker-compose up
 ```
 pip install poetry
 ```
+
+### 의존성 라이브러리 설치
+
+```
+poetry install
+```
