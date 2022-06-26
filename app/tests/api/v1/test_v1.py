@@ -12,4 +12,4 @@ def test_healthcheck():
     data = sut.json()
 
     assert sut.status_code is status.HTTP_200_OK
-    assert data["is_ok"] == True
+    assert data["is_ok"] is True
