@@ -35,6 +35,12 @@ pyproject.toml 에 있는 필요 라이브러리 설치
 poetry install
 ```
 
+DB 테이블 마이그레이션
+
+```
+alembic upgrade head
+```
+
 ## Code convention
 
 코딩 컨벤션에 따라 코드 포맷팅을 해주고 싶을 경우엔 dev-dependency로 설치된 black을 설정 해주면 되며 Pycharm 사용 시 아래 아티클 참조
