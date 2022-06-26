@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "user-management"
+version = "0.1.0"
+description = "user management dependencies"
+authors = ["choemingyu <mchead1@naver.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+SQLAlchemy = "^1.4.39"
+alembic = "^1.8.0"
+fastapi = "^0.78.0"
+uvicorn = "^0.18.1"
+uvloop = "^0.16.0"
+virtualenv = "^20.15.0"
+watchfiles = "^0.15.0"
+webencodings = "^0.5.1"
+websockets = "^10.3"
+zipp = "^3.8.0"
+urllib3 = "^1.26.9"
+typing-extensions = "^4.2.0"
+platformdirs = "^2.5.2"
+
+[tool.poetry.dev-dependencies]
+poetry = "^1.1.13"
+poetry-core = "^1.0.8"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
