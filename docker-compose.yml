@@ -1,0 +1,13 @@
+version: "3"
+services:
+    db:
+        image: postgres:latest
+        container_name: postgres
+        restart: always
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_USER: "root"
+            POSTGRES_PASSWORD: "temp_pwd1!"
+        volumes:
+            - ./pg_data:/var/lib/postgresql/data

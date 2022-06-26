@@ -48,3 +48,6 @@ Thumbs.db
 
 # poetry
 poetry.lock
+
+# docker
+pg_data/
