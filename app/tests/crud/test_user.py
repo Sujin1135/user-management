@@ -1,7 +1,4 @@
-import pytest
-
 from app.crud.crud_user import crud_user
-from app.enums.login_type import LoginType
 from app.schemas.user import UserCreate
 from app.tests.core.faker_provider import get_faker
 

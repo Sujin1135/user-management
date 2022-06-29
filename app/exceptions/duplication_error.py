@@ -1,8 +1,9 @@
 from sqlalchemy.exc import IntegrityError
 
+DUPLICATION_CODE = "gkpj"
+
 
 class DuplicationError(Exception):
     @staticmethod
     def is_duplication_err(e: IntegrityError):
-        code = e.orig.args[0]
-        return code == 1062
+        return e.code == DUPLICATION_CODE

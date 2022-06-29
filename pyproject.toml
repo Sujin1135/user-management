@@ -21,6 +21,7 @@ typing-extensions = "^4.2.0"
 platformdirs = "^2.5.2"
 psycopg2-binary = "^2.9.3"
 bcrypt = "^3.2.2"
+PyJWT = "^2.4.0"
 
 [tool.poetry.dev-dependencies]
 poetry = "^1.1.13"

@@ -64,8 +64,8 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
 
             if DuplicationError.is_duplication_err(e):
                 raise DuplicationError("중복된 키값이 존재합니다")
-            elif NotFoundError.is_not_foreign_key_existed(e):
-                raise NotFoundError("해당하는 외래키가 존재하지 않습니다")
+
+            raise e
         except Exception as e:
             logging.error("*** occurred unknown error when create a model")
             raise e
