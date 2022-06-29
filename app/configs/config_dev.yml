@@ -6,3 +6,7 @@ databases:
     username: "root"
     password: "temp_pwd1!"
     timezone: "+09:00"
+
+jwt:
+  secret_key: "test_secret_key"
+  refresh_secret_key: "test_refresh_secret_key"

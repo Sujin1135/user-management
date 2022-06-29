@@ -15,6 +15,7 @@ with open(os.path.join(path, filename)) as f:
 
 class Config(BaseSettings):
     databases: dict = yaml_settings["databases"]
+    jwt: dict = yaml_settings["jwt"]
 
     class Config:
         env_file = "configs.yml"
