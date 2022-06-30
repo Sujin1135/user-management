@@ -15,12 +15,10 @@
 
 ### DB 생성
 
-아래 명령어를 입력하여 PostgreSQL, Redis 를 설치 및 실행 합니다
+아래 명령어를 입력하여 PostgreSQL 설치 및 실행 합니다
 
 ```
 docker-compose up
-
-docker-compose -f ./redis_server.yml up -d
 ```
 
 ### 의존성 라이브러리 설치
