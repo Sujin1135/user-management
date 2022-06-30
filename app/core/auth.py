@@ -13,10 +13,8 @@ from app.schemas.token_data import TokenData
 from app.schemas.user import UserRes
 
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
-REFRESH_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7
 ALGORITHM = "HS256"
 JWT_SECRET_KEY = config.jwt["secret_key"]
-JWT_REFRESH_SECRET_KEY = config.jwt["refresh_secret_key"]
 
 password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
