@@ -39,8 +39,6 @@ def create_access_token(subject: Union[str, Any], expires_delta: int = None) -> 
 
     to_encode = {"exp": expires_delta, "sub": str(subject)}
     encoded_jwt = jwt.encode(to_encode, JWT_SECRET_KEY, ALGORITHM)
-    # ex = int(expires_delta.timestamp())
-    # get_redis_db().set(f"{subject}_access_token", encoded_jwt, ex)
     return encoded_jwt
 
 
