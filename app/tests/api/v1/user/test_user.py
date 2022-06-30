@@ -49,7 +49,7 @@ def test_login():
     service.create(data)
 
     sut = client.post(
-        "/api/v1/users/signin", json={"email": data.email, "password": password}
+        "/api/v1/users/signin", json={"username": data.email, "password": password}
     )
     result = sut.json()
 
@@ -75,7 +75,7 @@ def test_get_my_data():
 
 def login(data, password):
     return client.post(
-        "/api/v1/users/signin", json={"email": data.email, "password": password}
+        "/api/v1/users/signin", json={"username": data.email, "password": password}
     ).json()["access_token"]
 
 

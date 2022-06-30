@@ -42,7 +42,7 @@ class UserRes(BaseRes):
 
 
 class LoginReq(BaseModel):
-    email: str = EMAIL_FIELD
+    username: str = EMAIL_FIELD
     password: str = PWD_FIELD
 
 

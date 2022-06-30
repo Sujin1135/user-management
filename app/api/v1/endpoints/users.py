@@ -51,7 +51,7 @@ async def create(user: UserCreate = Body(...)):
 async def login(login_req: LoginReq):
     return JSONResponse(
         status_code=status.HTTP_200_OK,
-        content=jsonable_encoder(service.login(login_req.email, login_req.password)),
+        content=jsonable_encoder(service.login(login_req.username, login_req.password)),
     )
 
 
