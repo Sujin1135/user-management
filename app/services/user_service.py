@@ -1,8 +1,9 @@
 import bcrypt
 
-from app.core.auth import create_access_token, create_refresh_token
+from app.core.auth import create_access_token
 from app.crud.crud_user import crud_user
 from app.exceptions.unauthorized_error import UnauthorizedError
+from app.schemas.login_tokens import LoginTokens
 from app.schemas.user import UserCreate
 
 ENCODE_TYPE = "utf-8"
@@ -28,7 +29,4 @@ class UserService:
     def login(self, email: str, password: str):
         self.verify_password(email, password)
 
-        return {
-            "access_token": create_access_token(email),
-            "refresh_token": create_refresh_token(email),
-        }
+        return LoginTokens(access_token=create_access_token(email))

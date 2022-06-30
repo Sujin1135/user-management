@@ -24,6 +24,7 @@ bcrypt = "^3.2.2"
 PyJWT = "^2.4.0"
 passlib = "^1.7.4"
 python-jose = "^3.3.0"
+redis = "^4.3.4"
 
 [tool.poetry.dev-dependencies]
 poetry = "^1.1.13"

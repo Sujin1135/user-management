@@ -2,11 +2,14 @@ from fastapi.testclient import TestClient
 from fastapi import status
 from h11 import Response
 
+from app.services.user_service import UserService
+from app.tests.services.test_user_service import get_test_create_user_data
 from main import app
 from app.tests.core.faker_provider import get_faker
 
 faker = get_faker()
 client = TestClient(app)
+service = UserService()
 
 
 def get_test_signup_data() -> dict:
@@ -38,3 +41,35 @@ def test_signup_duplicated_email_user_case():
     sut = request_signup(data)
 
     assert sut.status_code == status.HTTP_400_BAD_REQUEST
+
+
+def test_login():
+    data = get_test_create_user_data()
+    password = data.password
+    service.create(data)
+
+    sut = client.post(
+        "/api/v1/users/signin", json={"email": data.email, "password": password}
+    )
+    result = sut.json()
+
+    assert sut.status_code == status.HTTP_200_OK
+    assert result["access_token"] is not None
+
+
+def test_get_my_data():
+    data = get_test_create_user_data()
+    password = data.password
+    service.create(data)
+    access_token = client.post(
+        "/api/v1/users/signin", json={"email": data.email, "password": password}
+    ).json()["access_token"]
+
+    sut = client.get(
+        "/api/v1/users/me",
+        headers={"Authorization": f"Bearer {access_token}"},
+    )
+    me = sut.json()
+
+    assert sut.status_code == status.HTTP_200_OK
+    assert me["email"] == data.email

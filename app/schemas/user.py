@@ -32,3 +32,8 @@ class UserRes(BaseRes):
     nickname: str
     name: str
     phone_number: str
+
+
+class LoginReq(BaseModel):
+    email: str
+    password: str

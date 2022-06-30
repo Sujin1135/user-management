@@ -39,5 +39,4 @@ def test_login():
 
     sut = service.login(data.email, password)
 
-    assert isinstance(sut["access_token"], str)
-    assert isinstance(sut["refresh_token"], str)
+    assert isinstance(sut.access_token, str)
