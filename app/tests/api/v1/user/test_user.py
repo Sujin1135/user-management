@@ -94,3 +94,11 @@ def test_change_password():
     sut = login(data, next_password)
 
     assert isinstance(sut, str)
+
+
+def test_send_auth_sns_message():
+    sut = client.post(
+        "/api/v1/users/request-auth-phone-number", json={"phone_number": "01012345678"}
+    )
+
+    assert sut.status_code == status.HTTP_200_OK

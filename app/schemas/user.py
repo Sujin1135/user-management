@@ -49,3 +49,11 @@ class LoginReq(BaseModel):
 class UserPwdChange(BaseModel):
     current_password: str = PWD_FIELD
     change_password: str = PWD_FIELD
+
+
+class PhoneAuthReq(BaseModel):
+    phone_number: str = PHONE_NUMBER_FIELD
+
+
+class PhoneAuthRes(BaseModel):
+    is_success: bool

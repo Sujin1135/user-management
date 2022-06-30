@@ -3,9 +3,16 @@ from fastapi.encoders import jsonable_encoder
 from starlette import status
 from starlette.responses import JSONResponse
 
-from app.core.auth import get_current_user
+from app.core.auth import get_current_user, send_phone_auth_message
 from app.schemas.login_tokens import LoginTokens
-from app.schemas.user import UserCreate, UserRes, LoginReq, UserPwdChange
+from app.schemas.user import (
+    UserCreate,
+    UserRes,
+    LoginReq,
+    UserPwdChange,
+    PhoneAuthReq,
+    PhoneAuthRes,
+)
 from app.services.user_service import UserService
 
 router = APIRouter()
@@ -45,6 +52,20 @@ async def login(login_req: LoginReq):
     return JSONResponse(
         status_code=status.HTTP_200_OK,
         content=jsonable_encoder(service.login(login_req.email, login_req.password)),
+    )
+
+
+@router.post(
+    "/request-auth-phone-number",
+    status_code=status.HTTP_200_OK,
+    response_model=PhoneAuthRes,
+)
+async def auth_phone_number(body: PhoneAuthReq = Body(...)):
+    return JSONResponse(
+        status_code=status.HTTP_200_OK,
+        content=jsonable_encoder(
+            PhoneAuthRes(is_success=send_phone_auth_message(body.phone_number))
+        ),
     )
 
 

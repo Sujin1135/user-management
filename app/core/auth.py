@@ -1,3 +1,5 @@
+from random import randint
+
 import bcrypt
 
 from fastapi import Depends, HTTPException
@@ -9,6 +11,7 @@ from jose import jwt, JWTError
 from starlette import status
 
 from app.configs.config import config
+from app.core.sns_sender import SnsSender
 from app.crud.crud_user import crud_user
 from app.models.user import User
 from app.schemas.token_data import TokenData
@@ -68,6 +71,15 @@ def convert_user_model_to_schema(model: User):
         updated_at=model.updated_at,
         deleted_at=model.deleted_at,
     )
+
+
+def rand_auth_number() -> int:
+    return randint(100000, 999999)
+
+
+def send_phone_auth_message(phone_number: str) -> bool:
+    message = f"인증번호는 [{rand_auth_number()}] 입니다"
+    return SnsSender.send_message(phone_number, message)
 
 
 async def get_current_user(token: str = Depends(oauth2_scheme)):
