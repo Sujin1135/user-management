@@ -6,8 +6,8 @@ class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True)
-    email = Column(String, nullable=False, max_length=320)
-    password = Column(String, nullable=False, max_length=60)
-    nickname = Column(String, nullable=True, max_length=20)
-    name = Column(String, nullable=False, max_length=50)
-    phone_number = Column(String, nullable=False, max_length=15)
+    email = Column(String(320), nullable=False)
+    password = Column(String(60), nullable=False)
+    nickname = Column(String(20), nullable=True)
+    name = Column(String(50), nullable=False)
+    phone_number = Column(String(15), nullable=False)
