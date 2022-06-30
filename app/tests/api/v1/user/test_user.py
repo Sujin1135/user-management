@@ -61,9 +61,7 @@ def test_get_my_data():
     data = get_test_create_user_data()
     password = data.password
     service.create(data)
-    access_token = client.post(
-        "/api/v1/users/signin", json={"email": data.email, "password": password}
-    ).json()["access_token"]
+    access_token = login(data, password)
 
     sut = client.get(
         "/api/v1/users/me",
@@ -73,3 +71,26 @@ def test_get_my_data():
 
     assert sut.status_code == status.HTTP_200_OK
     assert me["email"] == data.email
+
+
+def login(data, password):
+    return client.post(
+        "/api/v1/users/signin", json={"email": data.email, "password": password}
+    ).json()["access_token"]
+
+
+def test_change_password():
+    data = get_test_create_user_data()
+    password = data.password
+    service.create(data)
+    next_password = "change1234!"
+
+    client.patch(
+        "/api/v1/users/me/change-pwd",
+        json={"current_password": password, "change_password": next_password},
+        headers={"Authorization": f"Bearer {login(data, password)}"},
+    )
+
+    sut = login(data, next_password)
+
+    assert isinstance(sut, str)

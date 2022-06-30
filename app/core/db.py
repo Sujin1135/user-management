@@ -1,6 +1,5 @@
 import logging
 
-import redis
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
@@ -23,6 +22,3 @@ def get_db_session() -> Session:
         return DBSession()
     except Exception as e:
         logging.error("failed to connect db", e)
-
-
-redis_info = config.databases["redis"]

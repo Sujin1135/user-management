@@ -4,9 +4,8 @@ from starlette import status
 from starlette.responses import JSONResponse
 
 from app.core.auth import get_current_user
-from app.crud.crud_user import crud_user
 from app.schemas.login_tokens import LoginTokens
-from app.schemas.user import UserCreate, UserUpdate, UserRes, LoginReq
+from app.schemas.user import UserCreate, UserRes, LoginReq, UserPwdChange
 from app.services.user_service import UserService
 
 router = APIRouter()
@@ -61,13 +60,16 @@ async def read_users_me(current_user: UserRes = Depends(get_current_active_user)
 
 
 @router.patch(
-    "/{user_id}",
+    "/me/change-pwd",
     status_code=status.HTTP_200_OK,
     response_model=UserRes,
 )
-async def update(user_id: int, user: UserUpdate = Body(...)):
-    crud_user.update(user_id, user)
+async def change_password(
+    current_user: UserRes = Depends(get_current_user),
+    change_data: UserPwdChange = Body(...),
+):
+    service.change_pwd(current_user, change_data)
     return JSONResponse(
         status_code=status.HTTP_200_OK,
-        content=jsonable_encoder(UserRes(*crud_user.get(user_id))),
+        content=jsonable_encoder(current_user),
     )
