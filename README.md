@@ -21,6 +21,16 @@
 docker-compose up
 ```
 
+### 가상환경 세팅
+```
+// 가상환경 생성
+python3 -m venv .venv
+
+// 가상환경 활성화
+source .venv/bin/activate
+```
+
+
 ### 의존성 라이브러리 설치
 
 패키지 관리툴 Poetry를 설치 합니다
